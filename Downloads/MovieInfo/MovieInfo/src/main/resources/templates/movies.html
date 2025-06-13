@@ -1,0 +1,183 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <titl-->
+<!--            body { background: #1e1e1e; color: #fff; font-family: Arial, sans-serif; }-->
+<!--            .container { margin: 40px auto; background: #fff; color: #222; padding: 30px; border-radius: 12px; width: 80%; }-->
+<!--            table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }-->
+<!--            th, td { padding: 10px; border-bottom: 1px solid #ddd; text-align: left; }-->
+<!--            th { background: #f45050; color: #fff; }-->
+<!--            a, button { color: #f45050; text-decoration: none; margin-right: 10px; }-->
+<!--            .actions { white-space: nowrap; }-->
+<!--            .add-btn { background: #f45050; color: #fff; padding: 8px 16px; border: none; border-radius: 5px; text-decoration: none; }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container">-->
+<!--    <h2>Movies List</h2>-->
+<!--    <a th:href="@{/movie/add}" class="add-btn">Add Movie</a>-->
+<!--    <a th:href="@{/movies/deleteAll}" onclick="return confirm('Delete all movies?')">Delete All</a>-->
+<!--    <table>-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Name</th>-->
+<!--            <th>Genre</th>-->
+<!--            <th>Rating</th>-->
+<!--            <th>Release Year</th>-->
+<!--            <th class="actions">Actions</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="movie : ${movies}">-->
+<!--            <td th:text="${movie.name}">Movie Name</td>-->
+<!--            <td th:text="${movie.genre}">Genre</td>-->
+<!--            <td th:text="${movie.rating}">Rating</td>-->
+<!--            <td th:text="${movie.releaseYear}">Year</td>-->
+<!--            <td class="actions">-->
+<!--                <a th:href="@{'/movie/edit/' + ${movie.id}}">Edit</a>-->
+<!--                <a th:href="@{'/movie/delete/' + ${movie.id}}" onclick="return confirm('Delete this movie?')">Delete</a>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr th:if="${#lists.isEmpty(movies)}">-->
+<!--            <td colspan="5">No movies found.</td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>e>Movies List</title>-->
+<!--    <style>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movies List</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #232526 0%, #414345 100%);
+            color: #222;
+            font-family: 'Montserrat', Arial, sans-serif;
+            min-height: 100vh;
+        }
+        .container {
+            margin: 60px auto;
+            background: #fff;
+            color: #222;
+            padding: 40px 36px 32px 36px;
+            border-radius: 18px;
+            width: 90%;
+            max-width: 950px;
+            box-shadow: 0 8px 32px rgba(44,62,80,0.18);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 28px;
+            font-weight: 700;
+            color: #f45050;
+            letter-spacing: 1px;
+        }
+        .top-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .add-btn, .delete-all-btn {
+            background: linear-gradient(90deg, #f45050 60%, #ff7e5f 100%);
+            color: #fff;
+            padding: 10px 22px;
+            border: none;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(244,80,80,0.08);
+            transition: background 0.2s;
+        }
+        .add-btn:hover, .delete-all-btn:hover {
+            background: linear-gradient(90deg, #ff7e5f 60%, #f45050 100%);
+        }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 8px;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 14px 12px;
+            text-align: left;
+        }
+        th {
+            background: #f45050;
+            color: #fff;
+            border-radius: 7px 7px 0 0;
+            font-size: 1.05rem;
+        }
+        tr {
+            background: #f7f7f7;
+            border-radius: 0 0 7px 7px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.06);
+        }
+        .actions {
+            white-space: nowrap;
+        }
+        .action-link {
+            color: #f45050;
+            text-decoration: none;
+            margin-right: 12px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .action-link:hover {
+            color: #ff7e5f;
+        }
+        .no-movies {
+            text-align: center;
+            color: #888;
+            font-size: 1.1rem;
+            padding: 24px 0;
+        }
+        @media (max-width: 700px) {
+            .container { padding: 18px 4px; width: 99%; }
+            th, td { padding: 8px 4px; font-size: 0.98rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Movies List</h2>
+    <div class="top-actions">
+        <a th:href="@{/movie/add}" class="add-btn">Add Movie</a>
+        <a th:href="@{/movies/deleteAll}" class="delete-all-btn" onclick="return confirm('Delete all movies?')">Delete All</a>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Genre</th>
+            <th>Rating</th>
+            <th>Release Year</th>
+            <th class="actions">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="movie : ${movies}">
+            <td th:text="${movie.name}">Movie Name</td>
+            <td th:text="${movie.genre}">Genre</td>
+            <td th:text="${movie.rating}">Rating</td>
+            <td th:text="${movie.releaseYear}">Year</td>
+            <td class="actions">
+                <a th:href="@{'/movie/edit/' + ${movie.id}}" class="action-link">Edit</a>
+                <a th:href="@{'/movie/delete/' + ${movie.id}}" class="action-link" onclick="return confirm('Delete this movie?')">Delete</a>
+            </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(movies)}">
+            <td colspan="5" class="no-movies">No movies found.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

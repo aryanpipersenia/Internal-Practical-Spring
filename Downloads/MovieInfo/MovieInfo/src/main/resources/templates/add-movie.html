@@ -1,0 +1,118 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Add Movie</title>-->
+<!--    <style>-->
+<!--        body { background: #1e1e1e; color: #fff; font-family: Arial, sans-serif; }-->
+<!--        .container { margin: 40px auto; background: #fff; color: #222; padding: 30px; border-radius: 12px; width: 400px; }-->
+<!--        input, select { width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ddd; }-->
+<!--        button { background: #f45050; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; }-->
+<!--        a { color: #f45050; text-decoration: none; margin-left: 10px; }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container">-->
+<!--    <h2>Add Movie</h2>-->
+<!--    <form th:action="@{/movie/add}" th:object="${movie}" method="post">-->
+<!--        <input type="text" th:field="*{name}" placeholder="Movie Name" required />-->
+<!--        <input type="text" th:field="*{genre}" placeholder="Genre" required />-->
+<!--        <input type="number" step="0.1" min="0" max="10" th:field="*{rating}" placeholder="Rating (0-10)" required />-->
+<!--        <input type="number" th:field="*{releaseYear}" placeholder="Release Year" required />-->
+<!--        <button type="submit">Add</button>-->
+<!--        <a th:href="@{/movies}">Cancel</a>-->
+<!--    </form>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Movie</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #232526 0%, #414345 100%);
+            color: #222;
+            font-family: 'Montserrat', Arial, sans-serif;
+            min-height: 100vh;
+        }
+        .container {
+            margin: 60px auto;
+            background: #fff;
+            color: #222;
+            padding: 40px 32px 32px 32px;
+            border-radius: 18px;
+            width: 420px;
+            box-shadow: 0 8px 32px rgba(44,62,80,0.18);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 28px;
+            font-weight: 700;
+            color: #f45050;
+            letter-spacing: 1px;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border-radius: 7px;
+            border: 1px solid #e0e0e0;
+            background: #f7f7f7;
+            font-size: 1rem;
+            transition: border 0.2s;
+        }
+        input:focus {
+            border: 1.5px solid #f45050;
+            outline: none;
+        }
+        button {
+            background: linear-gradient(90deg, #f45050 60%, #ff7e5f 100%);
+            color: #fff;
+            border: none;
+            padding: 12px 0;
+            border-radius: 7px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 2px 8px rgba(244,80,80,0.08);
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #ff7e5f 60%, #f45050 100%);
+        }
+        a {
+            color: #f45050;
+            text-decoration: none;
+            margin-left: 10px;
+            font-size: 0.98rem;
+            transition: color 0.2s;
+        }
+        a:hover {
+            color: #ff7e5f;
+        }
+        .actions {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Add Movie</h2>
+    <form th:action="@{/movie/add}" th:object="${movie}" method="post">
+        <input type="text" th:field="*{name}" placeholder="Movie Name" required />
+        <input type="text" th:field="*{genre}" placeholder="Genre" required />
+        <input type="number" step="0.1" min="0" max="10" th:field="*{rating}" placeholder="Rating (0-10)" required />
+        <input type="number" th:field="*{releaseYear}" placeholder="Release Year" required />
+        <div class="actions">
+            <button type="submit">Add</button>
+            <a th:href="@{/movies}">Cancel</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
